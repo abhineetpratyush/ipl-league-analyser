@@ -133,4 +133,13 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListAverageWithMaxStrikeRate = iplAnalyser.getBatsmenListSortedOnAverageWithMaxStrikeRate();
 		Assert.assertEquals("David Warner", sortedBatsmenListAverageWithMaxStrikeRate.get(0).getPlayerName());
 	}
+	
+	@Test
+	public void givenIPLBatsmenData_ShouldReturnHighestRunsWithMaxAverage() throws CustomFileIOException, CustomCSVBuilderException {
+		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
+		mappingStrategy.setType(BatsmenDataStructure.class);
+		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
+		List<BatsmenDataStructure> sortedBatsmenListHighestRunsWithMaxAverage = iplAnalyser.getBatsmenListSortedOnRunsWithMaxAverage();
+		Assert.assertEquals("David Warner", sortedBatsmenListHighestRunsWithMaxAverage.get(0).getPlayerName());
+	}
 }

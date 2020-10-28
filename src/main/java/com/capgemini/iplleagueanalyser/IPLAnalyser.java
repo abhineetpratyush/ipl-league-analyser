@@ -120,4 +120,9 @@ public class IPLAnalyser {
 		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalAverageList);
 		return equalAverageList;
 	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnRunsWithMaxAverage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
