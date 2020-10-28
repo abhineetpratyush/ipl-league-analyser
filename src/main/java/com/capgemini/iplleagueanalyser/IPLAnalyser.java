@@ -55,7 +55,8 @@ public class IPLAnalyser {
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateDescending() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getStrikeRate());
+		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		return batsmenList;
 	}
 }
