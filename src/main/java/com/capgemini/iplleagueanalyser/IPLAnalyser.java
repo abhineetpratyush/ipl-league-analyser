@@ -16,7 +16,8 @@ import com.opencsv.bean.MappingStrategy;
 public class IPLAnalyser {
 
 	private static final Logger log = LogManager.getLogger(IPLAnalyser.class); 
-	private List<BatsmenDataStructure> batsmenList; 
+	private List<BatsmenDataStructure> batsmenList;
+	private List<BowlersDataStructure> bowlersList; 
 
 	public static void main( String[] args ) {
 		log.info("Welcome to IPL Analyser!");
@@ -137,14 +138,42 @@ public class IPLAnalyser {
 		return equalRunsList;
 	}
 
-	public void loadIPLBowlersData(String bowlersCsvFilePath, MappingStrategy<BowlersDataStructure> mappingStrategy,
-			Class<BowlersDataStructure> class1, char c) {
-		// TODO Auto-generated method stub
-		
+	public int loadIPLBowlersData(String csvFilePath, MappingStrategy<BowlersDataStructure> mappingStrategy,
+			Class<BowlersDataStructure> bowlersDataStructureClass, char separator) throws CustomFileIOException, CustomCSVBuilderException {
+		try(FileReader fileReader = new FileReader(csvFilePath);
+				BufferedReader bufferedReader = new BufferedReader(fileReader);){
+			ICSVBuilder csvBuilder = new CSVBuilderFactory().createCSVBuilder();
+			if(bowlersDataStructureClass != null)
+				bowlersList = csvBuilder.getCSVFileList(bufferedReader, BowlersDataStructure.class, mappingStrategy, separator);
+			else
+				bowlersList = csvBuilder.getCSVFileList(bufferedReader, null, null, separator);
+			return bowlersList.size();
+		} catch(IOException e) {
+			throw new CustomFileIOException(ExceptionTypeIO.FILE_PROBLEM);
+		}
 	}
 
 	public List<BowlersDataStructure> getBowlersListSortedOnAverage() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BowlersDataStructure> bowlersComparator = Comparator.comparing(bowler -> bowler.getAverage());
+		this.sortBowlersDataStructureAscending(bowlersComparator, bowlersList);
+		List<BowlersDataStructure> nonZeroAverageBowlersList = new ArrayList<>();
+		for(int listItr = 0; listItr < bowlersList.size(); listItr++) 
+			if(bowlersList.get(listItr).getAverage() != 0) 
+				nonZeroAverageBowlersList.add(bowlersList.get(listItr));
+		return nonZeroAverageBowlersList;
+	}
+
+	private void sortBowlersDataStructureAscending(Comparator<BowlersDataStructure> bowlersComparator,
+			List<BowlersDataStructure> list) {
+		for(int i = 0; i < list.size(); i++) {
+			for(int j = 0; j < list.size() - i- 1; j++) {
+				BowlersDataStructure bowlerOne = list.get(j);
+				BowlersDataStructure bowlerTwo = list.get(j + 1);
+				if(bowlersComparator.compare(bowlerOne, bowlerTwo) > 0) {
+					list.set(j, bowlerTwo);
+					list.set(j + 1, bowlerOne);
+				}
+			}
+		}
 	}
 }
