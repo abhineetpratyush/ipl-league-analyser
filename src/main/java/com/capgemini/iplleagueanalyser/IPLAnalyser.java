@@ -136,4 +136,15 @@ public class IPLAnalyser {
 		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalRunsList);
 		return equalRunsList;
 	}
+
+	public void loadIPLBowlersData(String bowlersCsvFilePath, MappingStrategy<BowlersDataStructure> mappingStrategy,
+			Class<BowlersDataStructure> class1, char c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<BowlersDataStructure> getBowlersListSortedOnAverage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
