@@ -5,6 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.capgemini.opencsvbuilder.CustomCSVBuilderException;
+import com.opencsv.bean.HeaderColumnNameMappingStrategy;
+import com.opencsv.bean.MappingStrategy;
+
 public class IPLAnalyserTest {
 
 	IPLAnalyser iplAnalyser;
@@ -15,10 +19,12 @@ public class IPLAnalyserTest {
 	}
 
 	@Test
-	public void givenIPLBatsmenData_ShouldReturnSortedDescendingOnBattingAverage() {
-		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH);
+	public void givenIPLBatsmenData_ShouldReturnSortedDescendingOnBattingAverage() throws CustomFileIOException, CustomCSVBuilderException {
+		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
+		mappingStrategy.setType(BatsmenDataStructure.class);
+		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
 		List<BatsmenDataStructure> sortedBatsmenListOnAverageDescending = iplAnalyser.getBatsmenListSortedOnAverageDescending();
-		Assert.assertEquals("David Warner", sortedBatsmenListOnAverageDescending.get(0).getPlayerName());
-		Assert.assertEquals("Andre Russell", sortedBatsmenListOnAverageDescending.get(1).getPlayerName());
+		Assert.assertEquals("MS Dhoni", sortedBatsmenListOnAverageDescending.get(0).getPlayerName());
+		Assert.assertEquals("David Warner", sortedBatsmenListOnAverageDescending.get(1).getPlayerName());
 	}
 }
