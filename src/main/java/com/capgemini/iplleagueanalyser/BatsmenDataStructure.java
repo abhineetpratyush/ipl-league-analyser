@@ -54,4 +54,12 @@ public class BatsmenDataStructure {
 	public double getStrikeRate() {
 		return strikeRate;
 	}
+
+	public int getNumOfFours() {
+		return numOfFours;
+	}
+
+	public int getNumOfSixes() {
+		return numOfSixes;
+	}	
 }

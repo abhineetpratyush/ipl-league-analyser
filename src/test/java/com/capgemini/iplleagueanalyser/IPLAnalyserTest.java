@@ -102,8 +102,8 @@ public class IPLAnalyserTest {
 		mappingStrategy.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
 		List<BatsmenDataStructure> sortedBatsmenListOnFoursDescending = iplAnalyser.getBatsmenListSortedOnFoursDescending();
-		List<BatsmenDataStructure> sortedBatsmenListOnSixesDescending = iplAnalyser.getBatsmenListSortedOnSixesDescending();
 		Assert.assertEquals("Shikhar Dhawan", sortedBatsmenListOnFoursDescending.get(0).getPlayerName());
+		List<BatsmenDataStructure> sortedBatsmenListOnSixesDescending = iplAnalyser.getBatsmenListSortedOnSixesDescending();
 		Assert.assertEquals("Andre Russell", sortedBatsmenListOnSixesDescending.get(0).getPlayerName());
 	}
 }

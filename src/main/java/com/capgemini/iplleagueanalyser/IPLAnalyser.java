@@ -61,12 +61,14 @@ public class IPLAnalyser {
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnFoursDescending() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getNumOfFours());
+		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		return batsmenList;
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnSixesDescending() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getNumOfSixes());
+		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		return batsmenList;
 	}
 }
