@@ -53,4 +53,9 @@ public class IPLAnalyser {
 			}
 		}
 	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateDescending() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
