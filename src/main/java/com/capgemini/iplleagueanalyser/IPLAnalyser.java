@@ -106,7 +106,18 @@ public class IPLAnalyser {
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnAverageWithMaxStrikeRate() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getAverage());
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
+		List<BatsmenDataStructure> equalAverageList = new ArrayList<>();
+		equalAverageList.add(batsmenList.get(0));
+		for(int listItr = 1; listItr < batsmenList.size(); listItr++) {
+			if(batsmenList.get(listItr).getStrikeRate() == batsmenList.get(0).getStrikeRate()) 
+				equalAverageList.add(batsmenList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BatsmenDataStructure> batsmenComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getStrikeRate());
+		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalAverageList);
+		return equalAverageList;
 	}
 }
