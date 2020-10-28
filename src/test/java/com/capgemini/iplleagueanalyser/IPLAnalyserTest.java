@@ -112,8 +112,8 @@ public class IPLAnalyserTest {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
 		mappingStrategy.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
-		BatsmenDataStructure batsmenMaxStrikeRateWithMaxFours = iplAnalyser.getBatsmenOnStrikeRateWithMaxFours();
-		Assert.assertEquals("Andre Russell", batsmenMaxStrikeRateWithMaxFours.getPlayerName());
+		List<BatsmenDataStructure> sortedBatsmenListStrikeRateWithMaxFours = iplAnalyser.getBatsmenListSortedOnStrikeRateWithMaxFours();
+		Assert.assertEquals("Andre Russell", sortedBatsmenListStrikeRateWithMaxFours.get(0).getPlayerName());
 	}
 	
 	@Test
@@ -121,7 +121,7 @@ public class IPLAnalyserTest {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
 		mappingStrategy.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
-		BatsmenDataStructure batsmenMaxStrikeRateWithMaxSixes = iplAnalyser.getBatsmenOnStrikeRateWithMaxSixes();
-		Assert.assertEquals("Ishant Sharma", batsmenMaxStrikeRateWithMaxSixes.getPlayerName());
+		List<BatsmenDataStructure> sortedBatsmenListStrikeRateWithMaxSixes = iplAnalyser.getBatsmenListSortedOnStrikeRateWithMaxSixes();
+		Assert.assertEquals("Ishant Sharma", sortedBatsmenListStrikeRateWithMaxSixes.get(0).getPlayerName());
 	}
 }

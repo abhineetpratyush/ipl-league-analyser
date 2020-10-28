@@ -73,7 +73,7 @@ public class IPLAnalyser {
 		return batsmenList;
 	}
 
-	public BatsmenDataStructure getBatsmenOnStrikeRateWithMaxFours() {
+	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateWithMaxFours() {
 		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getStrikeRate());
 		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
 		List<BatsmenDataStructure> equalStrikeRateList = new ArrayList<>();
@@ -86,10 +86,10 @@ public class IPLAnalyser {
 		}
 		Comparator<BatsmenDataStructure> batsmenComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getNumOfFours());
 		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalStrikeRateList);
-		return equalStrikeRateList.get(0);
+		return equalStrikeRateList;
 	}
 
-	public BatsmenDataStructure getBatsmenOnStrikeRateWithMaxSixes() {
+	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateWithMaxSixes() {
 		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getStrikeRate());
 		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
 		List<BatsmenDataStructure> equalStrikeRateList = new ArrayList<>();
@@ -102,6 +102,6 @@ public class IPLAnalyser {
 		}
 		Comparator<BatsmenDataStructure> batsmenComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getNumOfSixes());
 		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalStrikeRateList);
-		return equalStrikeRateList.get(0);
+		return equalStrikeRateList;
 	}
 }
