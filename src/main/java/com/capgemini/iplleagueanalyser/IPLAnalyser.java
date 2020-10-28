@@ -111,7 +111,7 @@ public class IPLAnalyser {
 		List<BatsmenDataStructure> equalAverageList = new ArrayList<>();
 		equalAverageList.add(batsmenList.get(0));
 		for(int listItr = 1; listItr < batsmenList.size(); listItr++) {
-			if(batsmenList.get(listItr).getStrikeRate() == batsmenList.get(0).getStrikeRate()) 
+			if(batsmenList.get(listItr).getAverage() == batsmenList.get(0).getAverage()) 
 				equalAverageList.add(batsmenList.get(listItr));
 			else
 				break;
@@ -122,7 +122,18 @@ public class IPLAnalyser {
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnRunsWithMaxAverage() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getRunsScored());
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
+		List<BatsmenDataStructure> equalRunsList = new ArrayList<>();
+		equalRunsList.add(batsmenList.get(0));
+		for(int listItr = 1; listItr < batsmenList.size(); listItr++) {
+			if(batsmenList.get(listItr).getRunsScored() == batsmenList.get(0).getRunsScored()) 
+				equalRunsList.add(batsmenList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BatsmenDataStructure> batsmenComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getAverage());
+		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalRunsList);
+		return equalRunsList;
 	}
 }
