@@ -59,4 +59,14 @@ public class IPLAnalyser {
 		this.sortBatsmenDataStructureDescending(batsmenComparator);
 		return batsmenList;
 	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnFoursDescending() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnSixesDescending() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

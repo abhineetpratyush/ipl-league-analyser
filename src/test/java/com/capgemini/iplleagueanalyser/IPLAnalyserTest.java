@@ -95,4 +95,15 @@ public class IPLAnalyserTest {
 		Assert.assertEquals("Ishant Sharma", sortedBatsmenListOnStrikeRateDescending.get(0).getPlayerName());
 		Assert.assertEquals("Andre Russell", sortedBatsmenListOnStrikeRateDescending.get(1).getPlayerName());
 	}
+	
+	@Test
+	public void givenIPLBatsmenData_ShouldReturnSortedDescendingOnFoursAndSixes() throws CustomFileIOException, CustomCSVBuilderException {
+		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
+		mappingStrategy.setType(BatsmenDataStructure.class);
+		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
+		List<BatsmenDataStructure> sortedBatsmenListOnFoursDescending = iplAnalyser.getBatsmenListSortedOnFoursDescending();
+		List<BatsmenDataStructure> sortedBatsmenListOnSixesDescending = iplAnalyser.getBatsmenListSortedOnSixesDescending();
+		Assert.assertEquals("Shikhar Dhawan", sortedBatsmenListOnFoursDescending.get(0).getPlayerName());
+		Assert.assertEquals("Andre Russell", sortedBatsmenListOnSixesDescending.get(0).getPlayerName());
+	}
 }
