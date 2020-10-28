@@ -104,7 +104,7 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListOnFoursDescending = iplAnalyser.getBatsmenListSortedOnFoursDescending();
 		Assert.assertEquals("Shikhar Dhawan", sortedBatsmenListOnFoursDescending.get(0).getPlayerName());
 		List<BatsmenDataStructure> sortedBatsmenListOnSixesDescending = iplAnalyser.getBatsmenListSortedOnSixesDescending();
-		Assert.assertEquals("Andre Russell", sortedBatsmenListOnSixesDescending.get(0).getPlayerName());
+		Assert.assertEquals("Ishant Sharma", sortedBatsmenListOnSixesDescending.get(0).getPlayerName());
 	}
 	
 	@Test
@@ -112,9 +112,8 @@ public class IPLAnalyserTest {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
 		mappingStrategy.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
-		List<BatsmenDataStructure> sortedBatsmenListStrikeRateWithMaxFours = iplAnalyser.getBatsmenListSortedOnStrikeRateWithMaxFours();
-		Assert.assertEquals("Andre Russell", sortedBatsmenListStrikeRateWithMaxFours.get(0).getPlayerName());
-		Assert.assertEquals(null, sortedBatsmenListStrikeRateWithMaxFours.get(1).getPlayerName());
+		BatsmenDataStructure batsmenMaxStrikeRateWithMaxFours = iplAnalyser.getBatsmenOnStrikeRateWithMaxFours();
+		Assert.assertEquals("Andre Russell", batsmenMaxStrikeRateWithMaxFours.getPlayerName());
 	}
 	
 	@Test
@@ -122,8 +121,7 @@ public class IPLAnalyserTest {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
 		mappingStrategy.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
-		List<BatsmenDataStructure> sortedBatsmenListStrikeRateWithMaxSixes = iplAnalyser.getBatsmenListSortedOnStrikeRateWithMaxSixes();
-		Assert.assertEquals("Ishant Sharma", sortedBatsmenListStrikeRateWithMaxSixes.get(0).getPlayerName());
-		Assert.assertEquals(null, sortedBatsmenListStrikeRateWithMaxSixes.get(1).getPlayerName());
+		BatsmenDataStructure batsmenMaxStrikeRateWithMaxSixes = iplAnalyser.getBatsmenOnStrikeRateWithMaxSixes();
+		Assert.assertEquals("Ishant Sharma", batsmenMaxStrikeRateWithMaxSixes.getPlayerName());
 	}
 }

@@ -3,6 +3,7 @@ package com.capgemini.iplleagueanalyser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -37,18 +38,18 @@ public class IPLAnalyser {
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnAverageDescending() {
 		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getAverage());
-		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
 		return batsmenList;
 	}
 
-	private void sortBatsmenDataStructureDescending(Comparator<BatsmenDataStructure> batsmenComparator) {
-		for(int i = 0; i < batsmenList.size(); i++) {
-			for(int j = 0; j < batsmenList.size() - i- 1; j++) {
-				BatsmenDataStructure batsmanOne = batsmenList.get(j);
-				BatsmenDataStructure batsmanTwo = batsmenList.get(j + 1);
+	private void sortBatsmenDataStructureDescending(Comparator<BatsmenDataStructure> batsmenComparator, List<BatsmenDataStructure> list) {
+		for(int i = 0; i < list.size(); i++) {
+			for(int j = 0; j < list.size() - i- 1; j++) {
+				BatsmenDataStructure batsmanOne = list.get(j);
+				BatsmenDataStructure batsmanTwo = list.get(j + 1);
 				if(batsmenComparator.compare(batsmanOne, batsmanTwo) < 0) {
-					batsmenList.set(j, batsmanTwo);
-					batsmenList.set(j + 1, batsmanOne);
+					list.set(j, batsmanTwo);
+					list.set(j + 1, batsmanOne);
 				}
 			}
 		}
@@ -56,29 +57,51 @@ public class IPLAnalyser {
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateDescending() {
 		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getStrikeRate());
-		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
 		return batsmenList;
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnFoursDescending() {
 		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getNumOfFours());
-		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
 		return batsmenList;
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnSixesDescending() {
 		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getNumOfSixes());
-		this.sortBatsmenDataStructureDescending(batsmenComparator);
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
 		return batsmenList;
 	}
 
-	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateWithMaxFours() {
-		// TODO Auto-generated method stub
-		return null;
+	public BatsmenDataStructure getBatsmenOnStrikeRateWithMaxFours() {
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getStrikeRate());
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
+		List<BatsmenDataStructure> equalStrikeRateList = new ArrayList<>();
+		equalStrikeRateList.add(batsmenList.get(0));
+		for(int listItr = 1; listItr < batsmenList.size(); listItr++) {
+			if(batsmenList.get(listItr).getStrikeRate() == batsmenList.get(0).getStrikeRate()) 
+				equalStrikeRateList.add(batsmenList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BatsmenDataStructure> batsmenComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getNumOfFours());
+		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalStrikeRateList);
+		return equalStrikeRateList.get(0);
 	}
 
-	public List<BatsmenDataStructure> getBatsmenListSortedOnStrikeRateWithMaxSixes() {
-		// TODO Auto-generated method stub
-		return null;
+	public BatsmenDataStructure getBatsmenOnStrikeRateWithMaxSixes() {
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getStrikeRate());
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
+		List<BatsmenDataStructure> equalStrikeRateList = new ArrayList<>();
+		equalStrikeRateList.add(batsmenList.get(0));
+		for(int listItr = 1; listItr < batsmenList.size(); listItr++) {
+			if(batsmenList.get(listItr).getStrikeRate() == batsmenList.get(0).getStrikeRate()) 
+				equalStrikeRateList.add(batsmenList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BatsmenDataStructure> batsmenComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getNumOfSixes());
+		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalStrikeRateList);
+		return equalStrikeRateList.get(0);
 	}
 }
