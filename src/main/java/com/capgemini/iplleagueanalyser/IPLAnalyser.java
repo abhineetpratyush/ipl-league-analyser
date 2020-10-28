@@ -104,4 +104,9 @@ public class IPLAnalyser {
 		this.sortBatsmenDataStructureDescending(batsmenComparatorForTieBreaker, equalStrikeRateList);
 		return equalStrikeRateList;
 	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnAverageWithMaxStrikeRate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
