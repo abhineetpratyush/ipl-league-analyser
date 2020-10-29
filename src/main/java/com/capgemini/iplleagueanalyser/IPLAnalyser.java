@@ -286,7 +286,18 @@ public class IPLAnalyser {
 	}
 
 	public List<BatsmenDataStructure> getBatsmenListSortedOnHundredsWithHighestAverage() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BatsmenDataStructure> batsmenComparator = Comparator.comparing(batsman -> batsman.getNumOfCenturies());
+		this.sortBatsmenDataStructureDescending(batsmenComparator, batsmenList);
+		List<BatsmenDataStructure> equalHundredsList = new ArrayList<>();
+		equalHundredsList.add(batsmenList.get(0));
+		for(int listItr = 1; listItr < batsmenList.size(); listItr++) {
+			if(batsmenList.get(listItr).getNumOfCenturies() == batsmenList.get(0).getNumOfCenturies()) 
+				equalHundredsList.add(batsmenList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BatsmenDataStructure> batsmanComparatorForTieBreaker = Comparator.comparing(batsman -> batsman.getAverage());
+		this.sortBatsmenDataStructureDescending(batsmanComparatorForTieBreaker, equalHundredsList);
+		return equalHundredsList;
 	}
 }

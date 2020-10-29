@@ -66,4 +66,8 @@ public class BatsmenDataStructure {
 	public int getRunsScored() {
 		return runsScored;
 	}
+
+	public int getNumOfCenturies() {
+		return numOfCenturies;
+	}
 }

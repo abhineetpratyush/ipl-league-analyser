@@ -17,7 +17,7 @@ public class IPLAnalyserTest {
 	public void initialiseIPLAnalyserObject() {
 		iplAnalyser = new IPLAnalyser();
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnNoOfBatsmen() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -25,7 +25,7 @@ public class IPLAnalyserTest {
 		int numOfBatsmen = iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
 		Assert.assertEquals(100, numOfBatsmen);
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnSortedDescendingOnBattingAverage() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -35,7 +35,7 @@ public class IPLAnalyserTest {
 		Assert.assertEquals("David Warner", sortedBatsmenListOnAverageDescending.get(0).getPlayerName());
 		Assert.assertEquals("MS Dhoni", sortedBatsmenListOnAverageDescending.get(1).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIncorrectCSVFile_ShouldReturnCustomException() throws CustomCSVBuilderException {
 		String exceptionMessage = null;
@@ -85,7 +85,7 @@ public class IPLAnalyserTest {
 		}
 		Assert.assertEquals(ExceptionType.HEADER_OR_DELIMITER_PROBLEM.toString(), exceptionMessage);
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnSortedDescendingOnStrikeRate() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -95,7 +95,7 @@ public class IPLAnalyserTest {
 		Assert.assertEquals("Andre Russell", sortedBatsmenListOnStrikeRateDescending.get(0).getPlayerName());
 		Assert.assertEquals("Ishant Sharma", sortedBatsmenListOnStrikeRateDescending.get(1).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnSortedDescendingOnFoursAndSixes() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -106,7 +106,7 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListOnSixesDescending = iplAnalyser.getBatsmenListSortedOnSixesDescending();
 		Assert.assertEquals("Ishant Sharma", sortedBatsmenListOnSixesDescending.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnHighestStrikeWithMaxFours() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -115,7 +115,7 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListStrikeRateWithMaxFours = iplAnalyser.getBatsmenListSortedOnStrikeRateWithMaxFours();
 		Assert.assertEquals("Andre Russell", sortedBatsmenListStrikeRateWithMaxFours.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnHighestStrikeWithMaxSixes() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -124,7 +124,7 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListStrikeRateWithMaxSixes = iplAnalyser.getBatsmenListSortedOnStrikeRateWithMaxSixes();
 		Assert.assertEquals("Ishant Sharma", sortedBatsmenListStrikeRateWithMaxSixes.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnHighestAverageWithMaxStrikeRate() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -133,7 +133,7 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListAverageWithMaxStrikeRate = iplAnalyser.getBatsmenListSortedOnAverageWithMaxStrikeRate();
 		Assert.assertEquals("David Warner", sortedBatsmenListAverageWithMaxStrikeRate.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenData_ShouldReturnHighestRunsWithMaxAverage() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
@@ -142,7 +142,7 @@ public class IPLAnalyserTest {
 		List<BatsmenDataStructure> sortedBatsmenListHighestRunsWithMaxAverage = iplAnalyser.getBatsmenListSortedOnRunsWithMaxAverage();
 		Assert.assertEquals("David Warner", sortedBatsmenListHighestRunsWithMaxAverage.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBowlerData_ShouldReturnSortedBestBowlingAverage() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -151,7 +151,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnAverage = iplAnalyser.getBowlersListSortedOnAverage();
 		Assert.assertEquals("Anukul Roy", sortedBowlersListOnAverage.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBowlerData_ShouldReturnSortedBestStrikeRate() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -160,7 +160,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnStrikeRate = iplAnalyser.getBowlersListSortedOnStrikeRate();
 		Assert.assertEquals("Alzarri Joseph", sortedBowlersListOnStrikeRate.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBowlerData_ShouldReturnSortedBestEconomyRate() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -169,7 +169,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnEconomyRate = iplAnalyser.getBowlersListSortedOnEconomyRate();
 		Assert.assertEquals("Shivam Dube", sortedBowlersListOnEconomyRate.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBowlerData_ShouldReturnBestStrikeRateWithFourAndFiveWickets() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -178,7 +178,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnStrikeRateWithFourAndFiveWickets = iplAnalyser.getBowlersListSortedOnStrikeRateWithFourAndFiveWickets();
 		Assert.assertEquals("Alzarri Joseph", sortedBowlersListOnStrikeRateWithFourAndFiveWickets.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBowlerData_ShouldReturnBestBowlingAveragesWithHighestStrikeRates() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -187,7 +187,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnBowlingAverageWithHighestStrikeRates = iplAnalyser.getBowlersListSortedOnBowlingAverageWithHighestStrikeRates();
 		Assert.assertEquals("Sherfane Rutherford", sortedBowlersListOnBowlingAverageWithHighestStrikeRates.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBowlerData_ShouldReturnBowlersWithMaxWicketsWithBestAverages() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -196,7 +196,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnWicketsWithBestAverages = iplAnalyser.getBowlersListSortedOnWicketsWithBestAverages();
 		Assert.assertEquals("Kagiso Rabada", sortedBowlersListOnWicketsWithBestAverages.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenAndBowlerData_ShouldReturnBestBattingAndBowlingAverages() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategyBowler = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -210,7 +210,7 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnAverage = iplAnalyser.getBowlersListSortedOnAverage();
 		Assert.assertEquals("Anukul Roy", sortedBowlersListOnAverage.get(0).getPlayerName());
 	}
-	
+
 	@Test
 	public void givenIPLBatsmenAndBowlerData_ShouldReturnBestAllRounders() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategyBowler = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -222,12 +222,12 @@ public class IPLAnalyserTest {
 		List<AllRounderDataStructure> allRounderList = iplAnalyser.getBestAllRounderList(); 
 		Assert.assertEquals("Andre Russell", allRounderList.get(0).getPlayerName());
 	}
-	
+
 	public void givenIPLBatsmenData_ShouldReturnBatsmenWithMaxHundredsWithHighestPossibleAverage() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BatsmenDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
 		mappingStrategy.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategy, BatsmenDataStructure.class, ',');
 		List<BatsmenDataStructure> sortedBatsmenListMaxHundredsWithAverage = iplAnalyser.getBatsmenListSortedOnHundredsWithHighestAverage();
-		Assert.assertEquals("", sortedBatsmenListMaxHundredsWithAverage.get(0).getPlayerName());
-	
+		Assert.assertEquals("David Warner", sortedBatsmenListMaxHundredsWithAverage.get(0).getPlayerName());
+	}
 }
