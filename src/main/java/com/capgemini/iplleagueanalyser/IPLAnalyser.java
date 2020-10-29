@@ -188,7 +188,8 @@ public class IPLAnalyser {
 	}
 
 	public List<BowlersDataStructure> getBowlersListSortedOnEconomyRate() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BowlersDataStructure> bowlersComparator = Comparator.comparing(bowler -> bowler.getEconomyRate());
+		this.sortBowlersDataStructureAscending(bowlersComparator, bowlersList);
+		return bowlersList;
 	}
 }
