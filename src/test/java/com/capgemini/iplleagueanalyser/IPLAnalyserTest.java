@@ -161,7 +161,6 @@ public class IPLAnalyserTest {
 		Assert.assertEquals("Alzarri Joseph", sortedBowlersListOnStrikeRate.get(0).getPlayerName());
 	}
 	
-
 	@Test
 	public void givenIPLBowlerData_ShouldReturnSortedBestEconomyRate() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
@@ -169,5 +168,14 @@ public class IPLAnalyserTest {
 		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategy, BowlersDataStructure.class, ',');
 		List<BowlersDataStructure> sortedBowlersListOnEconomyRate = iplAnalyser.getBowlersListSortedOnEconomyRate();
 		Assert.assertEquals("Shivam Dube", sortedBowlersListOnEconomyRate.get(0).getPlayerName());
+	}
+	
+	@Test
+	public void givenIPLBowlerData_ShouldReturnBestStrikeRateWithFourAndFiveWickets() throws CustomFileIOException, CustomCSVBuilderException {
+		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
+		mappingStrategy.setType(BowlersDataStructure.class);
+		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategy, BowlersDataStructure.class, ',');
+		List<BowlersDataStructure> sortedBowlersListOnStrikeRateWithFourAndFiveWickets = iplAnalyser.getBowlersListSortedOnStrikeRateWithFourAndFiveWickets();
+		Assert.assertEquals("Shivam Dube", sortedBowlersListOnStrikeRateWithFourAndFiveWickets.get(0).getPlayerName());
 	}
 }

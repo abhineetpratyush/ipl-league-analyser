@@ -192,4 +192,9 @@ public class IPLAnalyser {
 		this.sortBowlersDataStructureAscending(bowlersComparator, bowlersList);
 		return bowlersList;
 	}
+
+	public List<BowlersDataStructure> getBowlersListSortedOnStrikeRateWithFourAndFiveWickets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
