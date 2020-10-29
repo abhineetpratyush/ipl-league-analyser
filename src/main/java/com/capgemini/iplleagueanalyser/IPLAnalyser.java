@@ -186,4 +186,9 @@ public class IPLAnalyser {
 				nonZeroStrikeRateBowlersList.add(bowlersList.get(listItr));
 		return nonZeroStrikeRateBowlersList;
 	}
+
+	public List<BowlersDataStructure> getBowlersListSortedOnEconomyRate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
