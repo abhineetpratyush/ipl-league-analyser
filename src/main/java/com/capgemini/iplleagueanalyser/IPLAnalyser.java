@@ -176,4 +176,9 @@ public class IPLAnalyser {
 			}
 		}
 	}
+
+	public List<BowlersDataStructure> getBowlersListSortedOnStrikeRate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -151,4 +151,13 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnAverage = iplAnalyser.getBowlersListSortedOnAverage();
 		Assert.assertEquals("Anukul Roy", sortedBowlersListOnAverage.get(0).getPlayerName());
 	}
+	
+	@Test
+	public void givenIPLBowlerData_ShouldReturnSortedBestStrikeRate() throws CustomFileIOException, CustomCSVBuilderException {
+		MappingStrategy<BowlersDataStructure> mappingStrategy = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
+		mappingStrategy.setType(BowlersDataStructure.class);
+		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategy, BowlersDataStructure.class, ',');
+		List<BowlersDataStructure> sortedBowlersListOnStrikeRate = iplAnalyser.getBowlersListSortedOnStrikeRate();
+		Assert.assertEquals("Anukul Roy", sortedBowlersListOnStrikeRate.get(0).getPlayerName());
+	}
 }
