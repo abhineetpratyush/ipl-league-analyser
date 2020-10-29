@@ -196,4 +196,16 @@ public class IPLAnalyserTest {
 		List<BowlersDataStructure> sortedBowlersListOnWicketsWithBestAverages = iplAnalyser.getBowlersListSortedOnWicketsWithBestAverages();
 		Assert.assertEquals("Kagiso Rabada", sortedBowlersListOnWicketsWithBestAverages.get(0).getPlayerName());
 	}
+	
+	@Test
+	public void givenIPLBatsmenAndBowlerData_ShouldReturnBestAllRounders() throws CustomFileIOException, CustomCSVBuilderException {
+		MappingStrategy<BowlersDataStructure> mappingStrategyBowler = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
+		mappingStrategyBowler.setType(BowlersDataStructure.class);
+		MappingStrategy<BatsmenDataStructure> mappingStrategyBatsmen = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
+		mappingStrategyBatsmen.setType(BatsmenDataStructure.class);
+		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategyBowler, BowlersDataStructure.class, ',');
+		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategyBatsmen, BatsmenDataStructure.class, ',');
+		List<AllRounderDataStructure> allRounderList = iplAnalyser.getBestAllRounderList(); 
+		Assert.assertEquals("", allRounderList.get(0).getPlayerName());
+	}
 }
