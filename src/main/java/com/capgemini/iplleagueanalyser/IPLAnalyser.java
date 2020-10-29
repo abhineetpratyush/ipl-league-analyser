@@ -177,6 +177,20 @@ public class IPLAnalyser {
 		}
 	}
 
+	private void sortBowlersDataStructureDescending(Comparator<BowlersDataStructure> bowlersComparator,
+			List<BowlersDataStructure> list) {
+		for(int i = 0; i < list.size(); i++) {
+			for(int j = 0; j < list.size() - i- 1; j++) {
+				BowlersDataStructure bowlerOne = list.get(j);
+				BowlersDataStructure bowlerTwo = list.get(j + 1);
+				if(bowlersComparator.compare(bowlerOne, bowlerTwo) < 0) {
+					list.set(j, bowlerTwo);
+					list.set(j + 1, bowlerOne);
+				}
+			}
+		}
+	}
+
 	public List<BowlersDataStructure> getBowlersListSortedOnStrikeRate() {
 		Comparator<BowlersDataStructure> bowlersComparator = Comparator.comparing(bowler -> bowler.getStrikeRate());
 		this.sortBowlersDataStructureAscending(bowlersComparator, bowlersList);
@@ -223,7 +237,22 @@ public class IPLAnalyser {
 	}
 
 	public List<BowlersDataStructure> getBowlersListSortedOnWicketsWithBestAverages() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BowlersDataStructure> bowlersComparator = Comparator.comparing(bowler -> bowler.getWicketsTaken());
+		this.sortBowlersDataStructureDescending(bowlersComparator, bowlersList);
+		List<BowlersDataStructure> equalWicketsList = new ArrayList<>();
+		equalWicketsList.add(bowlersList.get(0));
+		for(int listItr = 1; listItr < bowlersList.size(); listItr++) {
+			if(bowlersList.get(listItr).getWicketsTaken() == bowlersList.get(0).getWicketsTaken()) 
+				equalWicketsList.add(bowlersList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BowlersDataStructure> bowlersComparatorForTieBreaker = Comparator.comparing(bowler -> bowler.getAverage());
+		this.sortBowlersDataStructureAscending(bowlersComparatorForTieBreaker, equalWicketsList);
+		List<BowlersDataStructure> maxWicketBowlersListWithNonZeroBestAverage = new ArrayList<>();
+		for(int listItr = 0; listItr < equalWicketsList.size(); listItr++) 
+			if(equalWicketsList.get(listItr).getAverage() != 0) 
+				maxWicketBowlersListWithNonZeroBestAverage.add(equalWicketsList.get(listItr));
+		return maxWicketBowlersListWithNonZeroBestAverage;
 	}
 }
