@@ -158,6 +158,6 @@ public class IPLAnalyserTest {
 		mappingStrategy.setType(BowlersDataStructure.class);
 		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategy, BowlersDataStructure.class, ',');
 		List<BowlersDataStructure> sortedBowlersListOnStrikeRate = iplAnalyser.getBowlersListSortedOnStrikeRate();
-		Assert.assertEquals("Anukul Roy", sortedBowlersListOnStrikeRate.get(0).getPlayerName());
+		Assert.assertEquals("Alzarri Joseph", sortedBowlersListOnStrikeRate.get(0).getPlayerName());
 	}
 }

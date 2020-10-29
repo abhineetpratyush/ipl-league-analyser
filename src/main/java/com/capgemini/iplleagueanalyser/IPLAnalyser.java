@@ -178,7 +178,12 @@ public class IPLAnalyser {
 	}
 
 	public List<BowlersDataStructure> getBowlersListSortedOnStrikeRate() {
-		// TODO Auto-generated method stub
-		return null;
+		Comparator<BowlersDataStructure> bowlersComparator = Comparator.comparing(bowler -> bowler.getStrikeRate());
+		this.sortBowlersDataStructureAscending(bowlersComparator, bowlersList);
+		List<BowlersDataStructure> nonZeroStrikeRateBowlersList = new ArrayList<>();
+		for(int listItr = 0; listItr < bowlersList.size(); listItr++) 
+			if(bowlersList.get(listItr).getAverage() != 0) 
+				nonZeroStrikeRateBowlersList.add(bowlersList.get(listItr));
+		return nonZeroStrikeRateBowlersList;
 	}
 }
