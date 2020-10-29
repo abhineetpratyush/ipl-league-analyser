@@ -176,6 +176,6 @@ public class IPLAnalyserTest {
 		mappingStrategy.setType(BowlersDataStructure.class);
 		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategy, BowlersDataStructure.class, ',');
 		List<BowlersDataStructure> sortedBowlersListOnStrikeRateWithFourAndFiveWickets = iplAnalyser.getBowlersListSortedOnStrikeRateWithFourAndFiveWickets();
-		Assert.assertEquals("Shivam Dube", sortedBowlersListOnStrikeRateWithFourAndFiveWickets.get(0).getPlayerName());
+		Assert.assertEquals("Alzarri Joseph", sortedBowlersListOnStrikeRateWithFourAndFiveWickets.get(0).getPlayerName());
 	}
 }

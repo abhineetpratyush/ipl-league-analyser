@@ -182,7 +182,7 @@ public class IPLAnalyser {
 		this.sortBowlersDataStructureAscending(bowlersComparator, bowlersList);
 		List<BowlersDataStructure> nonZeroStrikeRateBowlersList = new ArrayList<>();
 		for(int listItr = 0; listItr < bowlersList.size(); listItr++) 
-			if(bowlersList.get(listItr).getAverage() != 0) 
+			if(bowlersList.get(listItr).getStrikeRate() != 0) 
 				nonZeroStrikeRateBowlersList.add(bowlersList.get(listItr));
 		return nonZeroStrikeRateBowlersList;
 	}
@@ -194,7 +194,12 @@ public class IPLAnalyser {
 	}
 
 	public List<BowlersDataStructure> getBowlersListSortedOnStrikeRateWithFourAndFiveWickets() {
-		// TODO Auto-generated method stub
-		return null;
+		List<BowlersDataStructure> nonZeroFourAndFiveWicketsBowlersList = new ArrayList<>();
+		for(int listItr = 0; listItr < bowlersList.size(); listItr++) 
+			if(bowlersList.get(listItr).getNumOf4WicketHauls() + bowlersList.get(listItr).getNumOf5WicketHauls() > 0) 
+				nonZeroFourAndFiveWicketsBowlersList.add(bowlersList.get(listItr));
+		Comparator<BowlersDataStructure> bowlersComparator = Comparator.comparing(bowler -> bowler.getStrikeRate());
+		this.sortBowlersDataStructureAscending(bowlersComparator, nonZeroFourAndFiveWicketsBowlersList);
+		return nonZeroFourAndFiveWicketsBowlersList;
 	}
 }
