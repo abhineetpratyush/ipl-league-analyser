@@ -202,4 +202,9 @@ public class IPLAnalyser {
 		this.sortBowlersDataStructureAscending(bowlersComparator, nonZeroFourAndFiveWicketsBowlersList);
 		return nonZeroFourAndFiveWicketsBowlersList;
 	}
+
+	public List<BowlersDataStructure> getBowlersListSortedOnBowlingAverageWithHighestStrikeRates() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
