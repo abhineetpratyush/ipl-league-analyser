@@ -221,4 +221,9 @@ public class IPLAnalyser {
 				nonZeroAvgBowlersListWithNonZeroBestStrikeRate.add(equalAverageList.get(listItr));
 		return nonZeroAvgBowlersListWithNonZeroBestStrikeRate;
 	}
+
+	public List<BowlersDataStructure> getBowlersListSortedOnWicketsWithBestAverages() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
