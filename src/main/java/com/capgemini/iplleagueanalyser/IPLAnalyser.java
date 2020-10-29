@@ -284,4 +284,9 @@ public class IPLAnalyser {
 			}
 		}
 	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnHundredsWithHighestAverage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
