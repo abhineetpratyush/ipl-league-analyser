@@ -257,7 +257,31 @@ public class IPLAnalyser {
 	}
 
 	public List<AllRounderDataStructure> getBestAllRounderList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<AllRounderDataStructure> allRounderList = new ArrayList<>();
+		for(int batItr = 0; batItr < batsmenList.size(); batItr++) {
+			for(int bowlItr = 0; bowlItr < bowlersList.size(); bowlItr++) {
+				if(batsmenList.get(batItr).getPlayerName().equals((bowlersList).get(bowlItr).getPlayerName())) {
+					AllRounderDataStructure allRounderPlayerData = new AllRounderDataStructure(batsmenList.get(batItr).getPlayerName(), batsmenList.get(batItr).getRunsScored() + bowlersList.get(bowlItr).getWicketsTaken());
+					allRounderList.add(allRounderPlayerData);
+				}
+			}
+		}
+		Comparator<AllRounderDataStructure> allRounderComparator = Comparator.comparing(allRounder -> allRounder.getCombinedRunsAndWickets());
+		sortAllRoundersDataStructureDescending(allRounderComparator, allRounderList);
+		return allRounderList;
+	}
+
+	private void sortAllRoundersDataStructureDescending(Comparator<AllRounderDataStructure> allRounderComparator,
+			List<AllRounderDataStructure> list) {
+		for(int i = 0; i < list.size(); i++) {
+			for(int j = 0; j < list.size() - i- 1; j++) {
+				AllRounderDataStructure allRounderOne = list.get(j);
+				AllRounderDataStructure allRounderTwo = list.get(j + 1);
+				if(allRounderComparator.compare(allRounderOne, allRounderTwo) < 0) {
+					list.set(j, allRounderTwo);
+					list.set(j + 1, allRounderOne);
+				}
+			}
+		}
 	}
 }

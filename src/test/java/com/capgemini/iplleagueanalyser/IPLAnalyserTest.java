@@ -220,6 +220,6 @@ public class IPLAnalyserTest {
 		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategyBowler, BowlersDataStructure.class, ',');
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategyBatsmen, BatsmenDataStructure.class, ',');
 		List<AllRounderDataStructure> allRounderList = iplAnalyser.getBestAllRounderList(); 
-		Assert.assertEquals("", allRounderList.get(0).getPlayerName());
+		Assert.assertEquals("Andre Russell", allRounderList.get(0).getPlayerName());
 	}
 }
