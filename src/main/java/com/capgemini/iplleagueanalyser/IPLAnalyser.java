@@ -300,4 +300,9 @@ public class IPLAnalyser {
 		this.sortBatsmenDataStructureDescending(batsmanComparatorForTieBreaker, equalHundredsList);
 		return equalHundredsList;
 	}
+
+	public List<BatsmenDataStructure> getBatsmenListSortedOnNoCenturyAndHalfCenturyWithHighestAverages() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
