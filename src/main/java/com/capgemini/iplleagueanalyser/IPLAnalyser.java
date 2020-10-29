@@ -255,9 +255,4 @@ public class IPLAnalyser {
 				maxWicketBowlersListWithNonZeroBestAverage.add(equalWicketsList.get(listItr));
 		return maxWicketBowlersListWithNonZeroBestAverage;
 	}
-
-	public List<AllRounderDataStructure> getBestAllRounderList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

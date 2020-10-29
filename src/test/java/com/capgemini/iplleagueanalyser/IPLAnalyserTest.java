@@ -198,14 +198,16 @@ public class IPLAnalyserTest {
 	}
 	
 	@Test
-	public void givenIPLBatsmenAndBowlerData_ShouldReturnBestAllRounders() throws CustomFileIOException, CustomCSVBuilderException {
+	public void givenIPLBatsmenAndBowlerData_ShouldReturnBestBattingAndBowlingAverages() throws CustomFileIOException, CustomCSVBuilderException {
 		MappingStrategy<BowlersDataStructure> mappingStrategyBowler = new HeaderColumnNameMappingStrategy<BowlersDataStructure>();
 		mappingStrategyBowler.setType(BowlersDataStructure.class);
 		MappingStrategy<BatsmenDataStructure> mappingStrategyBatsmen = new HeaderColumnNameMappingStrategy<BatsmenDataStructure>();
 		mappingStrategyBatsmen.setType(BatsmenDataStructure.class);
 		iplAnalyser.loadIPLBowlersData(Constants.BOWLERS_CSV_FILE_PATH, mappingStrategyBowler, BowlersDataStructure.class, ',');
 		iplAnalyser.loadIPLBatsmenData(Constants.BATSMEN_CSV_FILE_PATH, mappingStrategyBatsmen, BatsmenDataStructure.class, ',');
-		List<AllRounderDataStructure> allRounderList = iplAnalyser.getBestAllRounderList(); 
-		Assert.assertEquals("", allRounderList.get(0).getPlayerName());
+		List<BatsmenDataStructure> sortedBatsmenListOnAverageDescending = iplAnalyser.getBatsmenListSortedOnAverageDescending();
+		Assert.assertEquals("David Warner", sortedBatsmenListOnAverageDescending.get(0).getPlayerName());
+		List<BowlersDataStructure> sortedBowlersListOnAverage = iplAnalyser.getBowlersListSortedOnAverage();
+		Assert.assertEquals("Anukul Roy", sortedBowlersListOnAverage.get(0).getPlayerName());
 	}
 }
