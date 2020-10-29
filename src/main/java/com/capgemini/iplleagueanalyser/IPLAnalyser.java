@@ -204,7 +204,21 @@ public class IPLAnalyser {
 	}
 
 	public List<BowlersDataStructure> getBowlersListSortedOnBowlingAverageWithHighestStrikeRates() {
-		// TODO Auto-generated method stub
-		return null;
+		List<BowlersDataStructure> nonZeroAvgBowlersList = getBowlersListSortedOnAverage();
+		List<BowlersDataStructure> equalAverageList = new ArrayList<>();
+		equalAverageList.add(nonZeroAvgBowlersList.get(0));
+		for(int listItr = 1; listItr < nonZeroAvgBowlersList.size(); listItr++) {
+			if(nonZeroAvgBowlersList.get(listItr).getAverage() == nonZeroAvgBowlersList.get(0).getAverage()) 
+				equalAverageList.add(nonZeroAvgBowlersList.get(listItr));
+			else
+				break;
+		}
+		Comparator<BowlersDataStructure> bowlersComparatorForTieBreaker = Comparator.comparing(bowler -> bowler.getStrikeRate());
+		this.sortBowlersDataStructureAscending(bowlersComparatorForTieBreaker, equalAverageList);
+		List<BowlersDataStructure> nonZeroAvgBowlersListWithNonZeroBestStrikeRate = new ArrayList<>();
+		for(int listItr = 0; listItr < equalAverageList.size(); listItr++) 
+			if(equalAverageList.get(listItr).getStrikeRate() != 0) 
+				nonZeroAvgBowlersListWithNonZeroBestStrikeRate.add(equalAverageList.get(listItr));
+		return nonZeroAvgBowlersListWithNonZeroBestStrikeRate;
 	}
 }
